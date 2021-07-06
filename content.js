@@ -1,5 +1,3 @@
-console.log("hello");
-
 const write = (element) => {
   //* convert array two smaller chunks
   const getArrayChunks = (arr, len) => {
@@ -32,7 +30,7 @@ const write = (element) => {
   if (converted.length > 0) {
     converted.map((co) => {
       if (co.length < 1) return;
-      //=> getting the unit element "ie: 0.125rem;"
+      //=> getting the unit "ie: 0.125rem;"
       const unit = co[1];
 
       if (unit && unit.includes("rem")) {
@@ -47,7 +45,7 @@ const write = (element) => {
     });
   }
 
-  //=> converting the chunks into array
+  //=> converting the chunks into single array and converting it into string
   const stringConversion = [].concat.apply([], converted).join(" ");
 
   //=> overwriting the existing unit in document
@@ -89,18 +87,18 @@ const changer = (table) => {
 const gotMessage = (request, sender, sendResponse) => {
   //=> url change
   if (request.message === "TabUpdated") {
-    const table = document.querySelectorAll("table tbody tr");
+    const tableRow = document.querySelectorAll("table tbody tr");
     sendResponse(isActive);
-    changer(table);
+    changer(tableRow);
   }
 
   //=> extension click
   if (request.message === "toggle-tab") {
     isActive = !isActive; //~ changing active state to toggle
-    const table = document.querySelectorAll("table tbody tr");
+    const tableRow = document.querySelectorAll("table tbody tr");
     sendResponse(isActive); //~ responding active state
-    if (table) {
-      changer(table);
+    if (tableRow) {
+      changer(tableRow);
     }
   }
 };

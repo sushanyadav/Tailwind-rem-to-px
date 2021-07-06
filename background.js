@@ -1,5 +1,3 @@
-console.log("background-running ");
-
 const buttonClicked = (tab) => {
   chrome.tabs.sendMessage(tab.id, { message: "toggle-tab" }, (isActive) => {
     setIcon(tab.id, isActive);
